@@ -5,17 +5,17 @@ if (process.argv.length < 3) {
     return console.error('Please provide a location for a weather forcecast');
 }
 
-geocode(process.argv[2], (error, data) => {
+geocode(process.argv[2], (error, { longitude, latitude, location }) => {
     if (error) {
         return console.log(error);
     }
 
-    forecast(data.longitude, data.latitude, (error, forecastData) => {
+    forecast(longitude, latitude, (error, forecastData) => {
         if (error) {
             return console.log(error);
         }
 
-        console.log(data.location);
+        console.log(location);
         console.log(forecastData);
     });
 });
